@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package message;
+option go_package ="/message";
+// 通信数据
+message Message {
+	string msgType = 1;             //消息类型
+	string msgContent = 2;          //消息内容
+	string sendName = 3;            //用户名
+	repeated string userList = 4;   //用户列表
+}
