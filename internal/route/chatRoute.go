@@ -1,10 +1,10 @@
 package route
 
 import (
-	"net/http"
+	"github.com/gin-gonic/gin"
 	"onlineChat/internal/ctrl"
 )
 
-func Route()  {
-	http.HandleFunc("/",ctrl.ChatCtrl)
+func Route(r *gin.Engine)  {
+	r.GET("/ws",ctrl.ChatCtrl)
 }

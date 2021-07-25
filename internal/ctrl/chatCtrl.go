@@ -1,6 +1,7 @@
 package ctrl
 
 import (
+	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
@@ -21,18 +22,19 @@ var (
 )
 
 
-func ChatCtrl(res http.ResponseWriter,req *http.Request)  {
+func ChatCtrl(c *gin.Context)  {
 	//将请求升级
-	conn, err := upGrader.Upgrade(res,req,nil)
+	conn, err := upGrader.Upgrade(c.Writer,c.Request,nil)
 	if err != nil {
-		http.NotFound(res, req)
 		log.Fatal("无法与",conn.RemoteAddr(),"建立连接")
 		return
 	}
-	values := req.URL.Query()
-	name := values.Get("name")
+
+	name := c.Request.Header.Get("name")
 	if len(name) == 0 {
-		res.WriteHeader(http.StatusBadRequest)
+		c.JSON(http.StatusBadRequest,gin.H{
+			"message":"无法连接",
+		})
 		return
 	}
 	handler.OnlineChat(conn,name)
