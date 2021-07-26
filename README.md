@@ -109,4 +109,4 @@ go build
 
 ## 流程图
 
-![流程图](/Users/yangzhenghai/workspace/onlineChat/流程图.jpg)
+![流程图](./流程图.jpg)
