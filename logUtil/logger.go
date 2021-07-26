@@ -8,7 +8,7 @@ import (
 var Log *log.Logger
 
 func Init() {
-	logFile, err := os.OpenFile("./log/server.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
+	logFile, err := os.OpenFile("../log/server.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 	if err != nil {
 		log.Panic("can't open server.log,please try again")
 	}
